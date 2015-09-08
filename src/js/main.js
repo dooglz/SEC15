@@ -37,7 +37,7 @@ var TeamMemberNames = [
   "Nathaniel", "Noe", "Stewart", "Blythe", "Conar", "Meebelo", "Neil", "Sam", "Adam", "Alexander", "Andrew", "Andrew",
   "Calum", "Connor", "Grant", "Jordan", "Karl", "Lyle", "Mateusz", "Nathan", "Nicholas", "Adam", "Alasdair", "Bartholomew",
   "Caelan", "Calum", "Conner", "Jack", "Jeremy", "Kimon", "Kristian", "Louis", "Martin", "Marvin", "Matthew", "Matthew",
-  "Nikolaos", "Romans", "Ross", "Ruairi", "Ryan", "Steven", "Tomasz", "Valentina", "Brian", "Liam", "King", "Callan", "Ash", "Neil's Mum"
+  "Nikolaos", "Romans", "Ross", "Ruairi", "Ryan", "Steven", "Tomasz", "Valentina", "Brian", "Liam", "King", "Callan", "Ash",
 ];
  
 var GameCatagories = [
