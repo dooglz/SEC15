@@ -1,14 +1,13 @@
+/* indicating bars */
 .indicatorblock {
     background-color: lightblue;
     height:100%;
     width:32.5%;
     display:inline-block;
 }
-.indicatortitleblock {
-    background-color: lightblue;
-    height:100%;
-    width:32.5%;
-    display:inline-block;
+#indicatorhead{
+    height:50px;
+    padding-bottom:2px;
 }
 #indicatorblock01 {
     
@@ -19,6 +18,57 @@
 #indicatorblock03 {
 }
 
-h1 {
-    color: navy;
+
+
+
+/* title in words */
+#indicatortitle {
+    padding-bottom:2px;
+    border-bottom:solid;
+}
+.indicatortitleblock {
+    height:100%;
+    width:32.5%;
+    display:inline-block;
+    text-align:center;
+}
+#indicatortitle01 {
+}
+#indicatortitle02 {
+}
+#indicatortitle03 {
+}
+p {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+
+
+
+/* left content about avatar head */
+#leftcontent {
+    background-color:yellow;
+    height:500px;
+    width:25%;
+    border-right:solid;
+    display:inline-block;
+    overflow: scroll;
+}
+.playerclass {
+    height:150px;
+    width:100%;
+    background-color:blue;
+    margin-bottom:10px;
+}
+
+
+
+
+/* playground */
+#rightcontent {
+    background-color:red;
+    height:500px;
+    width:73.6%;
+    display:inline-block;
 }
