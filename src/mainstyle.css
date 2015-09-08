@@ -63,7 +63,6 @@ p {
 
 /* left content about avatar head */
 #leftcontent {
-    background-color:yellow;
     height:500px;
     width:25%;
     border-right:solid;
@@ -73,11 +72,20 @@ p {
 .playerclass {
     height:150px;
     width:100%;
-    background-color:blue;
-    margin-bottom:10px;
+    margin-top:10px;
 }
-
-
+.char_health, .char_energy, .char_stress, .char_intoxication {
+    height:15px;
+    background-color:yellow;
+    margin-right:20px;
+    margin-bottom:1px;
+}
+.playerclass:hover {
+    background-color:#CEF6F5;
+}
+.char_health p, .char_energy p, .char_stress p, .char_intoxication p {
+    display:inline-block;
+}
 
 
 /* playground */
