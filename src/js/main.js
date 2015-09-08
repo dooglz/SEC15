@@ -4,8 +4,8 @@
 var gameTime = 120000;
 
 //class for game
-var Game = function (name) {
-  this.name = name;
+var Game = function () {
+  this.name = "";
   this.teamName = "";
   this.catagory = "";
   this.language = "";
