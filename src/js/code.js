@@ -23,15 +23,15 @@ function Judge() {
 	GameState = "Judging";
 }
 
-var timer = setInterval(Tick, 30);
+var ticktimer = setInterval(Tick, 30);
 var prevtime;
-function Tick(){
+function Tick() {
 	var delta = (new Date() - prevtime);
 	prevtime = new Date();
 	switch (GameState) {
 		case "MainGame":
 			gametimer -= delta;
-			if(gametimer <=0){
+			if (gametimer <= 0) {
 				//times ran out, judge time
 				Judge();
 				break;
@@ -40,16 +40,34 @@ function Tick(){
 				ProcessGuy(team[i]);
 			}
 			break;
+		case "SelectTeam":
+			break;
+		case "SelectGame":
+			break;
+		case "Judging":
+			break;
 		default:
 			break;
 	}
-	
 }
 
-function ProcessGuy(guy){
-	if(guy.status == "Moving"){
-		
-	}else{
-		
+function ProcessGuy(guy) {
+	if (guy.status == "Moving") {
+		//Todo: handle this
+	} else {
+		//find the location object
+		var loc = $.grep(Areas, function (a) {
+			return a == guy.area;
+		});
+		if (loc.length == 1) {
+			guy.stress += loc.stress;
+			guy.energy += loc.energy;
+			guy.drunk += loc.drunk;
+			theGame.bugs += loc.bugs;
+			theGame.codeSize += loc.codeSize;
+			theGame.coolness += loc.coolness;
+		} else {
+			console.error(guy.name + " in unkown location: " + guy.area);
+		}
 	}
 }
