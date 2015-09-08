@@ -23,13 +23,15 @@ var TeamMember = function (name) {
   this.stress = 0.0;
   this.energy = 1.0;
   this.drunk = 0.0;
-  this.status = "Working"; //Either "Moving" or "Working"
+  this.status = "working"; //Either "moving" or "working"
   this.area = "Sofa"; 
   //skill
   this.programmingSkill = 1.0;
   this.planningSkill = 1.0;
   this.testingSkill = 1.0;
   this.charisma = 1.0;
+  //
+  this.movetime = 0; //if moving, how long have they been moving
 };
 
 var TeamMemberNames = [

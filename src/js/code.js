@@ -2,16 +2,18 @@ var gametimer;
 var GameState;
 var team;
 var theGame;
+var selectedGuy;
 
 function Reset() {
 	// Set user interface to Team select
 	GameState = "SelectTeam";
 	team = [];
+	selectedGuy = undefined;
 }
 
 function GameSelection() {
 	GameState = "SelectGame";
-	theGame = new Game("");
+	theGame = new Game();
 }
 
 function GameMode() {
@@ -53,7 +55,10 @@ function Tick() {
 
 function ProcessGuy(guy) {
 	if (guy.status == "Moving") {
-		//Todo: handle this
+		if (guy.movetime >= guy.area.travelTime){
+			guy.status = "working";
+			guy.movetime = 0;
+		}
 	} else {
 		//find the location object
 		var loc = $.grep(Areas, function (a) {
@@ -69,5 +74,16 @@ function ProcessGuy(guy) {
 		} else {
 			console.error(guy.name + " in unkown location: " + guy.area);
 		}
+	}
+}
+
+function MoveGuy(newPostion){
+	if(selectedGuy === undefined){
+		return;
+	}
+	if(selectedGuy.status == "working"){
+		selectedGuy.status = "moving";
+		selectedGuy.area = newPostion;
+		selectedGuy.movetime = 0;
 	}
 }
