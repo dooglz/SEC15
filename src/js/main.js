@@ -37,15 +37,15 @@ var TeamMemberNames = [
   "Nathaniel", "Noe", "Stewart", "Blythe", "Conar", "Meebelo", "Neil", "Sam", "Adam", "Alexander", "Andrew", "Andrew",
   "Calum", "Connor", "Grant", "Jordan", "Karl", "Lyle", "Mateusz", "Nathan", "Nicholas", "Adam", "Alasdair", "Bartholomew",
   "Caelan", "Calum", "Conner", "Jack", "Jeremy", "Kimon", "Kristian", "Louis", "Martin", "Marvin", "Matthew", "Matthew",
-  "Nikolaos", "Romans", "Ross", "Ruairi", "Ryan", "Steven", "Tomasz", "Valentina", "Brian", "Liam", "King", "Callan", "Ash"
+  "Nikolaos", "Romans", "Ross", "Ruairi", "Ryan", "Steven", "Tomasz", "Valentina", "Brian", "Liam", "King", "Callan", "Ash", "Neil's Mum"
 ];
-
+ 
 var GameCatagories = [
   { name: "Yet Another Timetable App", codeSize: 0.1, coolness: 0.0 },
   { name: "Boat Simulator", codeSize: 0.8, coolness: 0.8 },
   { name: "Boat Simulator Simulator", codeSize: 0.9, coolness: 0.9 },
   { name: "Amazing GTA Clone", codeSize: 1.0, coolness: 1.0 },
-  { name: "Web App", codeSize: 0.2, coolness: 0.2 },
+  { name: "WhatSnapp", codeSize: 0.2, coolness: 0.2 },
   { name: "Dino Ghost", codeSize: 0.3, coolness: 0.5 },
   { name: "Text Adventure", codeSize: 0.2, coolness: 0.2 },
 ];
