@@ -1,14 +1,13 @@
+/* indicating bars */
 .indicatorblock {
     background-color: lightblue;
     height:100%;
     width:32.5%;
     display:inline-block;
 }
-.indicatortitleblock {
-    background-color: lightblue;
-    height:100%;
-    width:32.5%;
-    display:inline-block;
+#indicatorhead{
+    height:50px;
+    padding-bottom:2px;
 }
 #indicatorblock01 {
     
