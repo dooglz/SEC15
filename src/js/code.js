@@ -47,6 +47,7 @@ function Tick() {
 		case "SelectGame":
 			break;
 		case "Judging":
+
 			break;
 		default:
 			break;
@@ -54,36 +55,56 @@ function Tick() {
 }
 
 function ProcessGuy(guy) {
-	if (guy.status == "Moving") {
-		if (guy.movetime >= guy.area.travelTime){
+	var loc = $.grep(Areas, function (a) {
+		return a.name == guy.area;
+	});
+	if (loc.length == 1) {
+		loc = loc[0];
+	} else {
+		console.error(guy.name + " in unkown location: " + guy.area);
+	}
+
+	if (guy.status == "moving") {
+		if (guy.movetime >= loc.travelTime) {
 			guy.status = "working";
 			guy.movetime = 0;
 		}
+		selectedGuy.movetime++;
 	} else {
-		//find the location object
-		var loc = $.grep(Areas, function (a) {
-			return a == guy.area;
-		});
-		if (loc.length == 1) {
-			guy.stress += loc.stress;
-			guy.energy += loc.energy;
-			guy.drunk += loc.drunk;
-			theGame.bugs += loc.bugs;
-			theGame.codeSize += loc.codeSize;
-			theGame.coolness += loc.coolness;
-		} else {
-			console.error(guy.name + " in unkown location: " + guy.area);
+
+		guy.stress += loc.stress;
+		guy.energy += loc.energy;
+		guy.drunk += loc.drunk;
+		if (!b) {
+			console.log(theGame.bugs, loc, loc.bugs);
+			b = true;
 		}
+		theGame.bugs += loc.bugs;
+		theGame.codeSize += loc.codeSize;
+		theGame.coolness += loc.coolness;
+
 	}
 }
 
-function MoveGuy(newPostion){
-	if(selectedGuy === undefined){
+function MoveGuy(newPostion) {
+	if (selectedGuy === undefined) {
 		return;
 	}
-	if(selectedGuy.status == "working"){
+	if (selectedGuy.status == "working") {
 		selectedGuy.status = "moving";
 		selectedGuy.area = newPostion;
 		selectedGuy.movetime = 0;
 	}
+}
+
+var b = false;
+
+function Test() {
+	Reset();
+	GameSelection();
+	team[0] = new TeamMember();
+	team[1] = new TeamMember();
+	team[2] = new TeamMember();
+	team[3] = new TeamMember();
+	GameMode();
 }
