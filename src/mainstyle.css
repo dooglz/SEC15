@@ -1,13 +1,28 @@
+p {
+    margin:0px;
+}
+
 /* indicating bars */
 .indicatorblock {
-    background-color: lightblue;
     height:100%;
-    width:32.5%;
+    width:24%;
     display:inline-block;
 }
 #indicatorhead{
-    height:50px;
     padding-bottom:2px;
+}
+.barframe {
+    margin-top:10px;
+    padding-top:5px;
+    height:20px;
+    width:85%;
+    border:solid 1px;
+    vertical-align:middle;
+}
+.inbarframe {
+    height:100%;
+    width:100%;
+    overflow:hidden;
 }
 #indicatorblock01 {
     
@@ -28,7 +43,7 @@
 }
 .indicatortitleblock {
     height:100%;
-    width:32.5%;
+    width:24%;
     display:inline-block;
     text-align:center;
 }
@@ -38,7 +53,7 @@
 }
 #indicatortitle03 {
 }
-p {
+.indicatortitleblock p {
     margin-top:5px;
     margin-bottom:5px;
 }
@@ -69,6 +84,6 @@ p {
 #rightcontent {
     background-color:red;
     height:500px;
-    width:73.6%;
+    width:73%;
     display:inline-block;
 }
