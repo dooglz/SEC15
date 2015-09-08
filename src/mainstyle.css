@@ -1,8 +1,24 @@
-body {
+.indicatorblock {
     background-color: lightblue;
+    height:100%;
+    width:32.5%;
+    display:inline-block;
+}
+.indicatortitleblock {
+    background-color: lightblue;
+    height:100%;
+    width:32.5%;
+    display:inline-block;
+}
+#indicatorblock01 {
+    
+}
+#indicatorblock02 {
+    
+}
+#indicatorblock03 {
 }
 
 h1 {
     color: navy;
-    margin-left: 20px;
 }
