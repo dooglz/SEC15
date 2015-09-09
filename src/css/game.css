@@ -5,7 +5,9 @@
   max-width: 1094px; /* or 950px */
   width: 100%;
 }
-
+.progress {
+margin-bottom: 2px;
+}
 .teamMember{
 	margin-top: 5px;
 	background-color:pink;
@@ -15,6 +17,13 @@
 .teamMember:hover {
     background-color: orangered;
 }
+
+.teamMemberName{
+	text-align: center;
+	font-size: 18px;
+	margin: 2px;
+}
+
 .area{
 	margin-top: 5px;
 	background-color:#CCFF66;

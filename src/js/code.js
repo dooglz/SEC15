@@ -1,8 +1,28 @@
-var gametimer;
+var gametimer = 0;
 var GameState;
 var team;
 var theGame;
 var selectedGuy;
+
+//$ selectors
+var bugsDiv = $("#bugsDiv");
+var codesizeDiv = $("#codesizeDiv");
+var coolnessDiv = $("#coolnessDiv");
+var timerDiv = $("#timerDiv");
+var teamDiv = $("#teamDiv");
+var teamMember1Div = $("#teamMember1Div");
+var teamMember2Div = $("#teamMember2Div");
+var teamMember3Div = $("#teamMember3Div");
+var teamMember4Div = $("#teamMember4Div");
+var mainDiv = $("#mainDiv");
+var sofaAreaDiv = $("#sofaAreaDiv");
+var computerAreaDiv = $("#computerAreaDiv");
+var whiteboardAreaDiv = $("#whiteboardAreaDiv");
+var conferenceAreaDiv = $("#conferenceAreaDiv");
+var testAreaDiv = $("#testAreaDiv");
+var smokingAreaDiv = $("#smokingAreaDiv");
+var pubAreaDiv = $("#pubAreaDiv");
+var shopAreaDiv = $("#shopAreaDiv");
 
 function Reset() {
 	// Set user interface to Team select
@@ -28,6 +48,7 @@ function Judge() {
 var ticktimer = setInterval(Tick, 30);
 var prevtime;
 function Tick() {
+	timerDiv.html("Time Remaining<br>"+MillisToTime(gametimer));
 	var delta = (new Date() - prevtime);
 	prevtime = new Date();
 	switch (GameState) {
@@ -107,4 +128,18 @@ function Test() {
 	team[2] = new TeamMember();
 	team[3] = new TeamMember();
 	GameMode();
+}
+
+
+function zeroPad(num, places) {
+  var zero = places - num.toString().length + 1;
+  return Array(+(zero > 0 && zero)).join("0") + num;
+}
+
+function MillisToTime(millis) {
+  var hours = zeroPad(Math.floor(millis / 36e5), 2),
+      mins = zeroPad(Math.floor((millis % 36e5) / 6e4), 2),
+      secs = zeroPad(Math.floor((millis % 6e4) / 1000), 2),
+      mil = zeroPad(Math.floor((millis % 1000)), 3);
+  return (mins + ':' + secs + ':' + mil);
 }
