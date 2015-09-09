@@ -24,26 +24,32 @@ var testAreaDiv = $("#testAreaDiv");
 var smokingAreaDiv = $("#smokingAreaDiv");
 var pubAreaDiv = $("#pubAreaDiv");
 var shopAreaDiv = $("#shopAreaDiv");
-
+var everyslot =[];
 function Reset() {
 	// Set user interface to Team select
 	GameState = "SelectTeam";
 	team = [];
 	selectedGuy = undefined;
 	areaSlots = {};
+	 everyslot =[];
 	for (var i = 0; i < Areas.length; i++) {
 		var loc = Areas[i];
 		areaSlots[loc.name] = [];
 
 		var div = $('<div/>', {
-			id: loc.safeName+"AreaDiv",
+			id: loc.safeName + "AreaDiv",
 			class: 'area',
 		})
-		
-		div.append('<div class="areaTitle">'+loc.name+'</div>');
+
+		div.append('<div class="areaTitle">' + loc.name + '</div>');
 		for (var j = 0; j < loc.slots; j++) {
 			areaSlots[loc.name][j] = false;
-			div.append('<div class="areaSlot" id="'+loc.safeName+'AreaSlot'+(j+1)+'Div"></div>');
+			var slotdiv = $('<div/>', {
+				id: loc.safeName+'AreaSlot'+(j+1)+'Div',
+				class: 'areaSlot',
+			})
+			everyslot.push(slotdiv);
+			slotdiv.appendTo(div);
 		}
 		div.appendTo(mainDiv);
 	}
@@ -86,9 +92,15 @@ function Tick() {
 				Judge();
 				break;
 			}
+			for (var i = 0; i < everyslot.length; i++) {
+				$(everyslot[i]).html("");
+			}
+			
+			
 			for (var i = 0; i < 4; i++) {
 				ProcessGuy(i);
 			}
+			
 			break;
 		case "SelectTeam":
 			break;
@@ -105,7 +117,9 @@ function Tick() {
 function ProcessGuy(i) {
 	var guy = team[i];
 	var loc = GetArea(guy.area);
-
+				//update UI slots
+	var slotdiv = $("#"+loc.safeName+'AreaSlot'+(guy.slotID+1)+"Div");
+	slotdiv.html(guy.name);
 	if (guy.status == "moving") {
 		if (guy.movetime >= loc.travelTime) {
 			guy.status = "working";
@@ -179,6 +193,10 @@ function Test() {
 	team[1] = new TeamMember();
 	team[2] = new TeamMember();
 	team[3] = new TeamMember();
+	team[0].name = "bob";
+	team[1].name = "jim";
+	team[2].name = "joe";
+	team[3].name = "st";
 	selectedGuy = team[0];
 	MoveGuy("Sofa",true);
 		selectedGuy = team[1];
