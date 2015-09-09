@@ -162,11 +162,14 @@ function ProcessGuy(i) {
 		theGame.codeSize += loc.codeSize;
 		theGame.coolness += loc.coolness;
 
-		//UpdateUi
-		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy * 100+"%");
-		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress * 100+"%");
-		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk * 100+"%");
-		$("#teamMember"+(i+1)+"MotivationDiv").width(guy.productivity * 100+"%");
+	    //UpdateUi
+	    //todo: yer maw
+	    //loop to make ui bars grow properly
+        //smoke weed everyday
+		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy *+ 10+"%");
+		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress *+ 10+"%");
+		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk *+ 10+"%");
+		$("#teamMember"+(i+1)+"MotivationDiv").width(guy.productivity *+ 10+"%");
 	//loop through the team
 	for(i=0;i<4;i++){
 			
