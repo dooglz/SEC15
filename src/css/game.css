@@ -55,7 +55,7 @@ color: black;
 	background-color:#E0E0E0;
 	display: inline-block;
 }
-teamChoiceHeadder{
+.teamChoiceHeadder{
 	width: 100%;
 	clear: both;
 }
@@ -64,6 +64,33 @@ teamChoiceHeadder{
 	width: 100%;
 	margin-top: 50px;
 	background-color: greenyellow;
+}
+
+.catagorychoice{
+			vertical-align:top;
+	margin: 2px;
+	padding: 2px;
+	display: inline-block;
+	background-color: burlywood;
+}
+.catagorychoice:hover {
+    background-color: #CCFFFF;
+}
+.catagorychoice.selected{
+ background-color: fuchsia;
+}
+.languagechoice{
+		vertical-align:top;
+	margin: 2px;
+	padding: 2px;
+	display: inline-block;
+	background-color: goldenrod;
+}
+.languagechoice:hover {
+    background-color: #CCFFFF;
+}
+.languagechoice.selected{
+ background-color: fuchsia;
 }
 
 .teamchoiceperson{

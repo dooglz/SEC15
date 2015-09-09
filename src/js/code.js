@@ -96,12 +96,62 @@ function AddToTeam(name){
 		GameSelection();
 	}
 }
-
+var everylanguage = [];
+var everyCatagory = [];
 function GameSelection() {
 	$("#TeamChoiceDiv").html("");
 	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select game options</div>');
 	GameState = "SelectGame";
-	theGame = new Game();	
+	theGame = new Game();
+	everyCatagory = [];
+	for (var i = 0; i < GameCatagories.length; i++) {
+		var name = GameCatagories[i].name;
+		var div = $('<div class="catagorychoice">' + name + '</div>');
+		div.click(
+			function (_item,d) {
+				return function (ev) {
+					console.log("Catagory Clicked: \n", _item,d);
+					for (var i = 0; i < everyCatagory.length; i++) {
+						$(everyCatagory[i]).removeClass("selected");
+					}
+					d.addClass("selected");
+					theGame.catagory = _item;
+				};
+			} (name,div)
+			);
+		$("#TeamChoiceDiv").append(div);
+		everyCatagory.push(div);
+	}
+	
+	$("#TeamChoiceDiv").append('<br><br><div class="teamChoiceHeadder">Select game options</div>');
+	everylanguage = [];
+	for (var i = 0; i < ProgrammingLanguages.length; i++) {	
+		var pname = ProgrammingLanguages[i].name;
+		div = $('<div class="languagechoice">' + pname + '</div>');
+		div.click(
+			function (_item,d) {
+				return function (ev) {
+					console.log("Language Clicked: \n", _item,d);
+					for (var i = 0; i < everylanguage.length; i++) {
+						$(everylanguage[i]).removeClass("selected");
+					}
+					d.addClass("selected");
+					theGame.language = _item;
+					SelectLang(_item);
+				};
+			} (pname,div)
+			);
+			$("#TeamChoiceDiv").append(div);
+			everylanguage.push(div);
+	}	
+
+}
+
+function SelectCat(name){
+	
+}
+function SelectLang(name){
+	theGame.language = name;
 }
 
 function GameMode() {
