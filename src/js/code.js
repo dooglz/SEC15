@@ -25,6 +25,20 @@ var smokingAreaDiv = $("#smokingAreaDiv");
 var pubAreaDiv = $("#pubAreaDiv");
 var shopAreaDiv = $("#shopAreaDiv");
 var everyslot =[];
+
+$("#teamMember1Div").click(function(){
+	selectedGuy = team[0];
+});
+$("#teamMember2Div").click(function(){
+	selectedGuy = team[1];
+});
+$("#teamMember3Div").click(function(){
+	selectedGuy = team[2];
+});
+$("#teamMember4Div").click(function(){
+	selectedGuy = team[3];
+});
+
 function Reset() {
 	// Set user interface to Team select
 	GameState = "SelectTeam";
@@ -48,11 +62,22 @@ function Reset() {
 				id: loc.safeName+'AreaSlot'+(j+1)+'Div',
 				class: 'areaSlot',
 			})
+			slotdiv.html("-");
 			everyslot.push(slotdiv);
 			slotdiv.appendTo(div);
 		}
+
+		//fukin closures, sheild your eyes from this evil
+		div.click(
+			function (_item) {
+				return function (ev) {
+					console.log("Area Clicked: \n",_item);
+					MoveGuy(_item.name);
+				};
+			} (loc)
+			);
 		div.appendTo(mainDiv);
-	}
+	 }
 }
 
 function GameSelection() {
@@ -93,10 +118,8 @@ function Tick() {
 				break;
 			}
 			for (var i = 0; i < everyslot.length; i++) {
-				$(everyslot[i]).html("");
+				$(everyslot[i]).html("-");;
 			}
-			
-			
 			for (var i = 0; i < 4; i++) {
 				ProcessGuy(i);
 			}
