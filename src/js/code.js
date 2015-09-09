@@ -93,17 +93,35 @@ function AddToTeam(name){
 		team[2].colour = "62FF00";
 		team[3].colour = "F700FD";
 		//picked full team.
-		GameSelection();
+		GameCatagoriesSelection();
 	}
 }
-var everylanguage = [];
-var everyCatagory = [];
-function GameSelection() {
+
+function ProgrammingLanguagesSelection(){
+  $("#TeamChoiceDiv").html("");
+	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select game Language</div>');
+  GameState = "SelectLanguage";
+  for (var i = 0; i < ProgrammingLanguages.length; i++) {	
+		var pname = ProgrammingLanguages[i].name;
+		div = $('<div class="languagechoice">' + pname + '</div>');
+		div.click(
+			function (_item,d) {
+				return function (ev) {
+					console.log("Language Clicked: \n", _item,d);
+					theGame.language = _item;
+          GameMode();
+				};
+			} (pname,div)
+			);
+			$("#TeamChoiceDiv").append(div);
+	}	
+}
+
+function GameCatagoriesSelection() {
 	$("#TeamChoiceDiv").html("");
-	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select game options</div>');
+	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select game Catagory</div>');
 	GameState = "SelectGame";
 	theGame = new Game();
-	everyCatagory = [];
 	for (var i = 0; i < GameCatagories.length; i++) {
 		var name = GameCatagories[i].name;
 		var div = $('<div class="catagorychoice">' + name + '</div>');
@@ -111,47 +129,13 @@ function GameSelection() {
 			function (_item,d) {
 				return function (ev) {
 					console.log("Catagory Clicked: \n", _item,d);
-					for (var i = 0; i < everyCatagory.length; i++) {
-						$(everyCatagory[i]).removeClass("selected");
-					}
-					d.addClass("selected");
 					theGame.catagory = _item;
+          ProgrammingLanguagesSelection();
 				};
 			} (name,div)
 			);
 		$("#TeamChoiceDiv").append(div);
-		everyCatagory.push(div);
 	}
-	
-	$("#TeamChoiceDiv").append('<br><br><div class="teamChoiceHeadder">Select game options</div>');
-	everylanguage = [];
-	for (var i = 0; i < ProgrammingLanguages.length; i++) {	
-		var pname = ProgrammingLanguages[i].name;
-		div = $('<div class="languagechoice">' + pname + '</div>');
-		div.click(
-			function (_item,d) {
-				return function (ev) {
-					console.log("Language Clicked: \n", _item,d);
-					for (var i = 0; i < everylanguage.length; i++) {
-						$(everylanguage[i]).removeClass("selected");
-					}
-					d.addClass("selected");
-					theGame.language = _item;
-					SelectLang(_item);
-				};
-			} (pname,div)
-			);
-			$("#TeamChoiceDiv").append(div);
-			everylanguage.push(div);
-	}	
-
-}
-
-function SelectCat(name){
-	
-}
-function SelectLang(name){
-	theGame.language = name;
 }
 
 function GameMode() {
@@ -247,6 +231,8 @@ function Tick() {
 			break;
 		case "SelectGame":
 			break;
+     case  "SelectLanguage":
+     break;
 		case "Judging":
 			$("#myModal").modal("show");
 			break;
@@ -411,4 +397,5 @@ function ColourSaturator(a,c) {
 	return r+g+b;
 }
 
+Reset();
 //          
