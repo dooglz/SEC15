@@ -166,7 +166,7 @@ function ProcessGuy(i) {
 		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy * 100+"%");
 		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress * 100+"%");
 		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk * 100+"%");
-		
+		$("#teamMember"+(i+1)+"MotivationDiv").width(guy.productivity * 100+"%");
 	//loop through the team
 	for(i=0;i<4;i++){
 			
@@ -191,7 +191,6 @@ function ProcessGuy(i) {
 		else if (guy.productivity <= 0.75){
 			
 		}	
-		console.log(guy.name + "is this motivated" + guy.productivity);
 	}
 
 	}
