@@ -17,6 +17,9 @@ color: black;
 	height:23%;
 	max-height: 145px;
 }
+.teamMember.selected{
+	background-color:#FF00FF;
+}
 .teamMember:hover {
     background-color: orangered;
 }
@@ -51,9 +54,6 @@ color: black;
 	border-width: 1px;
 	background-color:#E0E0E0;
 	display: inline-block;
-}
-.areaSlot:hover {
-    background-color: yellow;
 }
 
 .methodParam{

@@ -28,15 +28,31 @@ var everyslot =[];
 
 $("#teamMember1Div").click(function(){
 	selectedGuy = team[0];
+	$("#teamMember1Div").addClass( "selected" );
+	$("#teamMember2Div").removeClass( "selected" );
+	$("#teamMember3Div").removeClass( "selected" );
+	$("#teamMember4Div").removeClass( "selected" );
 });
 $("#teamMember2Div").click(function(){
 	selectedGuy = team[1];
+	$("#teamMember2Div").addClass( "selected" );
+	$("#teamMember1Div").removeClass( "selected" );
+	$("#teamMember3Div").removeClass( "selected" );
+	$("#teamMember4Div").removeClass( "selected" );
 });
 $("#teamMember3Div").click(function(){
 	selectedGuy = team[2];
+	$("#teamMember3Div").addClass( "selected" );
+	$("#teamMember2Div").removeClass( "selected" );
+	$("#teamMember1Div").removeClass( "selected" );
+	$("#teamMember4Div").removeClass( "selected" );
 });
 $("#teamMember4Div").click(function(){
 	selectedGuy = team[3];
+	$("#teamMember4Div").addClass( "selected" );
+	$("#teamMember2Div").removeClass( "selected" );
+	$("#teamMember3Div").removeClass( "selected" );
+	$("#teamMember1Div").removeClass( "selected" );
 });
 
 function Reset() {
@@ -111,7 +127,6 @@ function Tick() {
 	var delta = (new Date() - prevtime);
 	prevtime = new Date();
 	TimerMultiple = (0.001*delta);
-	//console.log(delta,TimerMultiple);
 	switch (GameState) {
 		case "MainGame":
 			gametimer -= delta;
@@ -126,14 +141,13 @@ function Tick() {
 			for (var i = 0; i < 4; i++) {
 				ProcessGuy(i);
 			}
-			
 			break;
 		case "SelectTeam":
 			break;
 		case "SelectGame":
 			break;
 		case "Judging":
-
+			$("#myModal").modal("show");
 			break;
 		default:
 			break;
@@ -151,7 +165,7 @@ function ProcessGuy(i) {
 			guy.status = "working";
 			guy.movetime = 0;
 		}
-		selectedGuy.movetime++;
+		guy.movetime++;
 	} else {
 		guy.stress += TimerMultiple*loc.stress;
 		guy.energy += TimerMultiple*loc.energy;
@@ -159,11 +173,7 @@ function ProcessGuy(i) {
 		guy.drunk += TimerMultiple*loc.drunk;
 		guy.stress = Clamp(guy.stress);
 		guy.energy = Clamp(guy.energy);
-		//console.log(guy.energy,TimerMultiple);	
 		guy.drunk = Clamp(guy.drunk);
-				if(i == 0){
-			//console.log(guy.energy,TimerMultiple);
-		}
 		theGame.bugs += TimerMultiple*loc.bugs;
 		theGame.bugs = Math.max(theGame.bugs,0); 
 		theGame.codeSize += TimerMultiple*loc.codeSize;
@@ -177,8 +187,7 @@ function ProcessGuy(i) {
 		$("#teamMember"+(i+1)+"StressDiv").width(Math.floor(guy.stress * 100)+"%");
 		$("#teamMember"+(i+1)+"DrunkDiv").width(Math.floor(guy.drunk * 100)+"%");
 		$("#teamMember"+(i+1)+"MotivationDiv").width(Math.floor(guy.productivity * 100)+"%");
-	//loop through the team
-			
+		
 		if(guy.drunk === 0.1){	// if person is not drunk use stress and energy to calculate productivity
 			guy.productivity = guy.energy - guy.stress;
 		}
