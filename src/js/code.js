@@ -93,8 +93,9 @@ function GameMode() {
 function Judge() {
 	GameState = "Judging";
 }
+var TimerMultiple = 1.0;
 
-var ticktimer = setInterval(Tick, 30);
+var ticktimer = setInterval(Tick, 1);
 var prevtime;
 function Tick() {
 	timerDiv.html("Time Remaining<br>"+MillisToTime(gametimer));
@@ -109,6 +110,8 @@ function Tick() {
 	}
 	var delta = (new Date() - prevtime);
 	prevtime = new Date();
+	TimerMultiple = (0.001*delta);
+	//console.log(delta,TimerMultiple);
 	switch (GameState) {
 		case "MainGame":
 			gametimer -= delta;
@@ -150,38 +153,37 @@ function ProcessGuy(i) {
 		}
 		selectedGuy.movetime++;
 	} else {
-		guy.stress += loc.stress;
-		guy.energy += loc.energy;
-		guy.drunk += loc.drunk;
+		guy.stress += TimerMultiple*loc.stress;
+		guy.energy += TimerMultiple*loc.energy;
+
+		guy.drunk += TimerMultiple*loc.drunk;
 		guy.stress = Clamp(guy.stress);
 		guy.energy = Clamp(guy.energy);
+		//console.log(guy.energy,TimerMultiple);	
 		guy.drunk = Clamp(guy.drunk);
-		
-		theGame.bugs += loc.bugs;
+				if(i == 0){
+			//console.log(guy.energy,TimerMultiple);
+		}
+		theGame.bugs += TimerMultiple*loc.bugs;
 		theGame.bugs = Math.max(theGame.bugs,0); 
-		theGame.codeSize += loc.codeSize;
-		theGame.coolness += loc.coolness;
-
+		theGame.codeSize += TimerMultiple*loc.codeSize;
+		theGame.coolness += TimerMultiple*loc.coolness;
+		
 	    //UpdateUi
 	    //todo: yer maw
 	    //loop to make ui bars grow properly
         //smoke weed everyday
-		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy *+ 10+"%");
-		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress *+ 10+"%");
-		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk *+ 10+"%");
-		$("#teamMember"+(i+1)+"MotivationDiv").width(guy.productivity *+ 10+"%");
+		$("#teamMember"+(i+1)+"EnergyDiv").width(Math.floor(guy.energy * 100.0)+"%");
+		$("#teamMember"+(i+1)+"StressDiv").width(Math.floor(guy.stress * 100)+"%");
+		$("#teamMember"+(i+1)+"DrunkDiv").width(Math.floor(guy.drunk * 100)+"%");
+		$("#teamMember"+(i+1)+"MotivationDiv").width(Math.floor(guy.productivity * 100)+"%");
 	//loop through the team
-	for(i=0;i<4;i++){
 			
 		if(guy.drunk === 0.1){	// if person is not drunk use stress and energy to calculate productivity
 			guy.productivity = guy.energy - guy.stress;
-			return guy.productivity;
-			break;
 		}
 		else if(guy.drunk > 0.1){	//otherwise include how drunk in the calculation
-		guy.productivity = guy.drunk * guy.energy / guy.stress;
-		return guy.productivity;
-		break;
+			guy.productivity = guy.drunk * guy.energy / guy.stress;
 		}
 		
 		// deal with productivity once it reaches a certain level 
@@ -194,7 +196,6 @@ function ProcessGuy(i) {
 		else if (guy.productivity <= 0.75){
 			
 		}	
-	}
 
 	}
 }
