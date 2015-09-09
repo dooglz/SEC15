@@ -49,6 +49,15 @@ var ticktimer = setInterval(Tick, 30);
 var prevtime;
 function Tick() {
 	timerDiv.html("Time Remaining<br>"+MillisToTime(gametimer));
+	if(theGame !== undefined){
+		bugsDiv.html("Bugs<br>"+Math.floor(theGame.bugs));
+		codesizeDiv.html("Code Size<br>"+Math.floor(theGame.codeSize));
+		coolnessDiv.html("Coolness<br>"+Math.floor(theGame.coolness));
+	}else{
+		bugsDiv.html("Bugs<br>0");
+		codesizeDiv.html("Code Size<br>0");
+		coolnessDiv.html("Coolness<br>0");
+	}
 	var delta = (new Date() - prevtime);
 	prevtime = new Date();
 	switch (GameState) {
@@ -60,7 +69,7 @@ function Tick() {
 				break;
 			}
 			for (var i = 0; i < 4; i++) {
-				ProcessGuy(team[i]);
+				ProcessGuy(i);
 			}
 			break;
 		case "SelectTeam":
@@ -75,7 +84,8 @@ function Tick() {
 	}
 }
 
-function ProcessGuy(guy) {
+function ProcessGuy(i) {
+	var guy = team[i];
 	var loc = $.grep(Areas, function (a) {
 		return a.name == guy.area;
 	});
@@ -92,18 +102,21 @@ function ProcessGuy(guy) {
 		}
 		selectedGuy.movetime++;
 	} else {
-
 		guy.stress += loc.stress;
 		guy.energy += loc.energy;
 		guy.drunk += loc.drunk;
-		if (!b) {
-			console.log(theGame.bugs, loc, loc.bugs);
-			b = true;
-		}
+		guy.stress = Clamp(guy.stress);
+		guy.energy = Clamp(guy.energy);
+		guy.drunk = Clamp(guy.drunk);
+		
 		theGame.bugs += loc.bugs;
 		theGame.codeSize += loc.codeSize;
 		theGame.coolness += loc.coolness;
 
+		//UpdateUi
+		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy * 100+"%");
+		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress * 100+"%");
+		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk * 100+"%");
 	}
 }
 
@@ -142,4 +155,8 @@ function MillisToTime(millis) {
       secs = zeroPad(Math.floor((millis % 6e4) / 1000), 2),
       mil = zeroPad(Math.floor((millis % 1000)), 3);
   return (mins + ':' + secs + ':' + mil);
+}
+
+function Clamp(a){
+	return Math.max(Math.min(a,1.0),0.0);
 }

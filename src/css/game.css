@@ -8,6 +8,9 @@
 .progress {
 margin-bottom: 2px;
 }
+.progress-bar {
+color: black;
+}
 .teamMember{
 	margin-top: 5px;
 	background-color:pink;
