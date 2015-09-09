@@ -56,6 +56,7 @@ $("#teamMember4Div").click(function () {
 	$("#teamMember1Div").removeClass("selected");
 });
 
+var teampickcount =0;
 function Reset() {
 	// Set user interface to Team select
 	GameState = "SelectTeam";
@@ -63,6 +64,55 @@ function Reset() {
 	selectedGuy = undefined;
 	areaSlots = {};
 	everyslot = [];
+	//
+	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select Team Members</div>');
+	for (var i = 0; i < TeamMemberNames.length; i++) {
+		var name = TeamMemberNames[i];
+		var div = $('<div class="teamchoiceperson">'+name+'</div>');
+		div.click(
+			function (_item) {
+				return function (ev) {
+					console.log("Person Clicked: \n", _item);
+					AddToTeam(_item);
+				};
+			} (name)
+			);
+		$("#TeamChoiceDiv").append(div);
+	}
+	teampickcount =0;	
+}
+
+function AddToTeam(name){
+	team[teampickcount] = new TeamMember();
+	team[teampickcount].name = name;
+	$("#teamMember"+(teampickcount+1)+"NameDiv").html(name);
+	teampickcount++;
+	if(teampickcount == 4){
+		team[0].colour = "00E1FF";
+		team[1].colour = "FF1E00";
+		team[2].colour = "62FF00";
+		team[3].colour = "F700FD";
+		//picked full team.
+		GameSelection();
+	}
+}
+
+function GameSelection() {
+	$("#TeamChoiceDiv").html("");
+	$("#TeamChoiceDiv").html('<div class="teamChoiceHeadder">Select game options</div>');
+	GameState = "SelectGame";
+	theGame = new Game();	
+}
+
+function GameMode() {
+	$("#TeamChoiceDiv").html("");
+	teamMember1Div.css("background-color", "#"+team[0].colour);
+	teamMember2Div.css("background-color", "#"+team[1].colour);
+	teamMember3Div.css("background-color", "#"+team[2].colour);
+	teamMember4Div.css("background-color", "#"+team[3].colour);
+	gametimer = gameTime;
+	GameState = "MainGame";
+	
 	for (var i = 0; i < Areas.length; i++) {
 		var loc = Areas[i];
 		areaSlots[loc.name] = [];
@@ -94,20 +144,15 @@ function Reset() {
 			);
 		div.appendTo(mainDiv);
 	}
-}
-
-function GameSelection() {
-	GameState = "SelectGame";
-	theGame = new Game();
-}
-
-function GameMode() {
-	teamMember1Div.css("background-color", "#"+team[0].colour);
-	teamMember2Div.css("background-color", "#"+team[1].colour);
-	teamMember3Div.css("background-color", "#"+team[2].colour);
-	teamMember4Div.css("background-color", "#"+team[3].colour);
-	gametimer = gameTime;
-	GameState = "MainGame";
+		selectedGuy = team[0];
+	MoveGuy("Sofa", true);
+	selectedGuy = team[1];
+	MoveGuy("Sofa", true);
+	selectedGuy = team[2];
+	MoveGuy("Sofa", true);
+	selectedGuy = team[3];
+	MoveGuy("Sofa", true);
+	
 }
 
 function Judge() {
@@ -265,26 +310,7 @@ var b = false;
 function Test() {
 	Reset();
 	GameSelection();
-	team[0] = new TeamMember();
-	team[1] = new TeamMember();
-	team[2] = new TeamMember();
-	team[3] = new TeamMember();
-	team[0].name = "bob";
-	team[1].name = "jim";
-	team[2].name = "joe";
-	team[3].name = "st";
-	team[0].colour = "00E1FF";
-	team[1].colour = "FF1E00";
-	team[2].colour = "62FF00";
-	team[3].colour = "F700FF";
-	selectedGuy = team[0];
-	MoveGuy("Sofa", true);
-	selectedGuy = team[1];
-	MoveGuy("Sofa", true);
-	selectedGuy = team[2];
-	MoveGuy("Sofa", true);
-	selectedGuy = team[3];
-	MoveGuy("Sofa", true);
+	
 	GameMode();
 
 }
@@ -334,3 +360,5 @@ function ColourSaturator(a,c) {
 	}
 	return r+g+b;
 }
+
+//          

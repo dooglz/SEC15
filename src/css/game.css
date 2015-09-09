@@ -18,10 +18,10 @@ color: black;
 	max-height: 145px;
 }
 .teamMember.selected{
-	background-color:#FF00FF;
+	background-color:#FFFF33 !important;
 }
 .teamMember:hover {
-    background-color: orangered;
+    background-color: #E0E0E0 !important;;
 }
 
 .teamMemberName{
@@ -55,7 +55,27 @@ color: black;
 	background-color:#E0E0E0;
 	display: inline-block;
 }
+teamChoiceHeadder{
+	width: 100%;
+	clear: both;
+}
 
+.teamChoice{
+	width: 100%;
+	margin-top: 50px;
+	background-color: greenyellow;
+}
+
+.teamchoiceperson{
+	vertical-align:top;
+	margin: 2px;
+	padding: 2px;
+	background-color: mediumaquamarine;
+	display: inline-block;
+}
+.teamchoiceperson:hover {
+    background-color: #CCFFFF;
+}
 .methodParam{
 	border-bottom: 1px dotted #000;
 }
