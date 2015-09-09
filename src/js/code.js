@@ -3,6 +3,7 @@ var GameState;
 var team;
 var theGame;
 var selectedGuy;
+var areaSlots = {};
 
 //$ selectors
 var bugsDiv = $("#bugsDiv");
@@ -29,6 +30,23 @@ function Reset() {
 	GameState = "SelectTeam";
 	team = [];
 	selectedGuy = undefined;
+	areaSlots = {};
+	for (var i = 0; i < Areas.length; i++) {
+		var loc = Areas[i];
+		areaSlots[loc.name] = [];
+
+		var div = $('<div/>', {
+			id: loc.safeName+"AreaDiv",
+			class: 'area',
+		})
+		
+		div.append('<div class="areaTitle">'+loc.name+'</div>');
+		for (var j = 0; j < loc.slots; j++) {
+			areaSlots[loc.name][j] = false;
+			div.append('<div class="areaSlot" id="'+loc.safeName+'AreaSlot'+(j+1)+'Div"></div>');
+		}
+		div.appendTo(mainDiv);
+	}
 }
 
 function GameSelection() {
@@ -86,14 +104,7 @@ function Tick() {
 
 function ProcessGuy(i) {
 	var guy = team[i];
-	var loc = $.grep(Areas, function (a) {
-		return a.name == guy.area;
-	});
-	if (loc.length == 1) {
-		loc = loc[0];
-	} else {
-		console.error(guy.name + " in unkown location: " + guy.area);
-	}
+	var loc = GetArea(guy.area);
 
 	if (guy.status == "moving") {
 		if (guy.movetime >= loc.travelTime) {
@@ -120,14 +131,42 @@ function ProcessGuy(i) {
 	}
 }
 
-function MoveGuy(newPostion) {
+function MoveGuy(newPostion,force) {
+	if(force === undefined){force == false;}
 	if (selectedGuy === undefined) {
 		return;
 	}
-	if (selectedGuy.status == "working") {
-		selectedGuy.status = "moving";
-		selectedGuy.area = newPostion;
-		selectedGuy.movetime = 0;
+	if (selectedGuy.status == "working" || selectedGuy.status == "" || force) {
+		//try to reserve a slot
+		var loc = GetArea(newPostion);
+		var slotID = 0;
+		var found = false;
+		for (var i = 0; i < loc.slots; i++) {
+			if (!areaSlots[newPostion][i]) {
+				found = true;
+				slotID = i;
+				break;
+			}
+		}
+		if (!found) {
+			//No free slots, bail out
+			return;
+		} else {
+			//unreserve current slot
+			if(selectedGuy.area != ""){
+				areaSlots[selectedGuy.area][selectedGuy.slotID] = false;
+				console.log(selectedGuy.name + " Moving from: "+selectedGuy.area +" Slot: "+selectedGuy.slotID);
+			}
+			console.log(selectedGuy.name + " Moving To: "+newPostion +" Slot: "+slotID);
+			//reserve slot
+			areaSlots[newPostion][slotID] = true;
+			//start moving
+			selectedGuy.slotID = slotID;
+			selectedGuy.status = "moving";
+			selectedGuy.area = newPostion;
+			selectedGuy.movetime = 0;
+		}
+
 	}
 }
 
@@ -140,7 +179,16 @@ function Test() {
 	team[1] = new TeamMember();
 	team[2] = new TeamMember();
 	team[3] = new TeamMember();
+	selectedGuy = team[0];
+	MoveGuy("Sofa",true);
+		selectedGuy = team[1];
+	MoveGuy("Sofa",true);
+		selectedGuy = team[2];
+	MoveGuy("Sofa",true);
+		selectedGuy = team[3];
+	MoveGuy("Sofa",true);
 	GameMode();
+	
 }
 
 
@@ -159,4 +207,16 @@ function MillisToTime(millis) {
 
 function Clamp(a){
 	return Math.max(Math.min(a,1.0),0.0);
+}
+
+
+function GetArea(areaname){
+	var loc = $.grep(Areas, function (a) {
+		return a.name == areaname;
+	});
+	if (loc.length == 1) {
+		return loc[0];
+	} else {
+		console.error("unkown location: " + areaname);
+	}
 }

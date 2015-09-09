@@ -23,8 +23,8 @@ var TeamMember = function (name) {
   this.stress = 0.0;
   this.energy = 1.0;
   this.drunk = 0.0;
-  this.status = "working"; //Either "moving" or "working"
-  this.area = "Sofa"; 
+  this.status = ""; //Either "moving" or "working"
+  this.area = ""; 
   //skill
   this.programmingSkill = 1.0;
   this.planningSkill = 1.0;
@@ -32,6 +32,7 @@ var TeamMember = function (name) {
   this.charisma = 1.0;
   //
   this.movetime = 0; //if moving, how long have they been moving
+  this.slotID = 0; //which slot in the current area the guy is in.
 };
 
 var TeamMemberNames = [
@@ -41,7 +42,7 @@ var TeamMemberNames = [
   "Caelan", "Calum", "Conner", "Jack", "Jeremy", "Kimon", "Kristian", "Louis", "Martin", "Marvin", "Matthew", "Matthew",
   "Nikolaos", "Romans", "Ross", "Ruairi", "Ryan", "Steven", "Tomasz", "Valentina", "Brian", "Liam", "King", "Callan", "Ash",
 ];
- 
+
 var GameCatagories = [
   { name: "Yet Another Timetable App", codeSize: 0.1, coolness: 0.0 },
   { name: "Boat Simulator", codeSize: 0.8, coolness: 0.8 },
@@ -64,14 +65,14 @@ var ProgrammingLanguages = [
 ];
 
 var Areas = [
-  { name: "Sofa", description: "Chillout", travelTime: 2, stress: -2.0, energy: 2.0, drunk: 0, bugs: 0, codeSize: 0, coolness: 0 },
-  { name: "Computer", description: "Code", travelTime: 1, stress: -3.0, energy: -1.5, drunk: 0, bugs: 0.1, codeSize: 1.5, coolness: 0.01 },
-  { name: "Whiteboard", description: "Plan", travelTime: 1, stress: 1.0, energy: -0.5, drunk: 0, bugs: 0, codeSize: 0.1, coolness: 0.5 },
-  { name: "Conference room", description: "Practise Presentation", travelTime: 2, stress: 2.0, energy: -1.0, drunk: 0, bugs: 0, codeSize: 0, coolness: 0.1 },
-  { name: "Test Area", description: "QA", travelTime: 1, stress: 1.0, energy: -1.0, drunk: 0, bugs: -0.1, codeSize: 0, coolness: 0.1 },
-  { name: "Smoking Area", description: "420 blazeit", travelTime: 3, stress: -5.0, energy: 0, drunk: 0.5, bugs: 0, codeSize: 0, coolness: 0.25 },
-  { name: "Pub", description: "Forget Troubles", travelTime: 10, stress: -2.0, energy: 0, drunk: 3.0, bugs: 0, codeSize: 0, coolness: 0.1 },
-  { name: "Shop", description: "Get Food", travelTime: 5, stress: -0.5, energy: 1.0, drunk: 0.1, bugs: 0, codeSize: 0, coolness: 0 },
+  { name: "Sofa", safeName: "sofa", description: "Chillout", slots: 4, travelTime: 2, stress: -2.0, energy: 2.0, drunk: 0, bugs: 0, codeSize: 0, coolness: 0 },
+  { name: "Computer", safeName: "computer", description: "Code", slots: 3, travelTime: 1, stress: 3.0, energy: -1.5, drunk: 0, bugs: 0.1, codeSize: 1.5, coolness: 0.01 },
+  { name: "Whiteboard", safeName: "whiteboard", description: "Plan", slots: 2, travelTime: 1, stress: 1.0, energy: -0.5, drunk: 0, bugs: 0, codeSize: 0.1, coolness: 0.5 },
+  { name: "Conference room", safeName: "conference", description: "Practise Presentation", slots: 2, travelTime: 2, stress: 2.0, energy: -1.0, drunk: 0, bugs: 0, codeSize: 0, coolness: 0.1 },
+  { name: "Test Area", safeName: "test", description: "QA", slots: 2, travelTime: 1, stress: 1.0, energy: -1.0, drunk: 0, bugs: -0.1, codeSize: 0, coolness: 0.1 },
+  { name: "Smoking Area", safeName: "smoking", description: "420 blazeit", slots: 2, travelTime: 3, stress: -5.0, energy: 0, drunk: 0.5, bugs: 0, codeSize: 0, coolness: 0.25 },
+  { name: "Pub", safeName: "pub", description: "Forget Troubles", slots: 2, travelTime: 10, stress: -2.0, energy: 0, drunk: 3.0, bugs: 0, codeSize: 0, coolness: 0.1 },
+  { name: "Shop", safeName: "shop", description: "Get Food", slots: 2, travelTime: 5, stress: -0.5, energy: 1.0, drunk: 0.1, bugs: 0, codeSize: 0, coolness: 0 },
 ];
 
 //modifiers, applied whenever a is calulated
