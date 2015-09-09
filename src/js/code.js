@@ -158,6 +158,7 @@ function ProcessGuy(i) {
 		guy.drunk = Clamp(guy.drunk);
 		
 		theGame.bugs += loc.bugs;
+		theGame.bugs = Math.max(theGame.bugs,0); 
 		theGame.codeSize += loc.codeSize;
 		theGame.coolness += loc.coolness;
 
