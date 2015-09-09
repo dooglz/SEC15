@@ -166,6 +166,34 @@ function ProcessGuy(i) {
 		$("#teamMember"+(i+1)+"EnergyDiv").width(guy.energy * 100+"%");
 		$("#teamMember"+(i+1)+"StressDiv").width(guy.stress * 100+"%");
 		$("#teamMember"+(i+1)+"DrunkDiv").width(guy.drunk * 100+"%");
+		
+	//loop through the team
+	for(i=0;i<4;i++){
+			
+		if(guy.drunk === 0.1){	// if person is not drunk use stress and energy to calculate productivity
+			guy.productivity = guy.energy - guy.stress;
+			return guy.productivity;
+			break;
+		}
+		else if(guy.drunk > 0.1){	//otherwise include how drunk in the calculation
+		guy.productivity = guy.drunk * guy.energy / guy.stress;
+		return guy.productivity;
+		break;
+		}
+		
+		// deal with productivity once it reaches a certain level 
+		if(guy.productivity <= 0.25){
+			
+		}
+		else if(guy.productivity <= 0.5){
+			
+		}
+		else if (guy.productivity <= 0.75){
+			
+		}	
+		console.log(guy.name + "is this motivated" + guy.productivity);
+	}
+
 	}
 }
 
