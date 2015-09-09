@@ -1,6 +1,3 @@
-.fillcont { 
-    background: #f9ffcf;
-}
 .container {
   max-width: 1094px; /* or 950px */
 }
@@ -8,12 +5,6 @@
   max-width: 1094px; /* or 950px */
   width: 100%;
 }
-.box{
-	position: relative;
-	width: 100%;		/* desired width */
-	height: 100%;
-}
-
 
 .teamMember{
 	margin-top: 5px;
@@ -21,56 +12,35 @@
 	height:23%;
 	max-height: 145px;
 }
-
+.teamMember:hover {
+    background-color: orangered;
+}
 .area{
 	margin-top: 5px;
 	background-color:#CCFF66;
-	height:11vw;
-	max-height: 145px;
-	width: 24%;
 	display: inline-block;
 }
-.area.big{
-	width: 48%;
+.area:hover {
+    background-color: royalblue;
 }
-.sbncontent{
-	position:  absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-  border-style: solid;
-  border-width: 2px;
+.areaTitle{
+	width: 100%;
+	background-color:#CCFFFF;
 }
-.box2{
+.areaSlot{
+	width: 6vw;
+	height: 6vw;
+	max-width: 85px;
+	max-height: 85px;
+	
+	margin:4px;
+	border-style: solid;
+	border-width: 1px;
+	background-color:#E0E0E0;
 	display: inline-block;
-	position: relative;
-	margin-left: auto;
-	width: 50%;
-	height: 100%;
-	white-space: nowrap;
 }
-.centered{
-	text-align: center;
-}
-.sbncontent2{
-	display: inline-block;
-	position:  absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-  	border-style: solid;
-  	border-width: 2px;
-}
-
-.stopbox{
-	margin-left: auto;
-	white-space: nowrap;
-	width: 94vw;
-	height: 42vw;
-	max-width: 1094px;
-	max-height: 547px;
+.areaSlot:hover {
+    background-color: yellow;
 }
 
 .methodParam{

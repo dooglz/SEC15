@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Simulator">
+  <meta name="description" content="SEC Simulator 2015">
   <meta name="author" content="Still Compiling">
   <title>Dynamic Data</title>
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/game.css" rel="stylesheet">
   <style>
-    body {padding-top: 10px;}
+    body {
+      padding-top: 10px;
+    }
   </style>
 </head>
 
@@ -38,43 +39,67 @@
     </div>
     <div class="row">
       <div class="col-sm-3" id="teamDiv" style="height: 50vw; max-height:600px; background-color:blue;">
-        <div class="teamMember">
+        <div class="teamMember"id="team0">
           Bob
         </div>
-        <div class="teamMember">
+        <div class="teamMember" id="team1">
           Jim
         </div>
-        <div class="teamMember">
+        <div class="teamMember" id="team2">
           Tony
         </div>
-        <div class="teamMember">
+        <div class="teamMember" id="team3">
           Joe
         </div>
       </div>
       <div class="col-sm-9" id="mainDiv" style="background-color:red;height: 50vw;max-height:600px">
-        <div class="area">
-          Sofa
+        <div class="area" id="sofaAreaDiv">
+          <div class="areaTitle">Sofa</div>
+          <div class="areaSlot" id="sofaAreaSlot1Div"></div>
+          <div class="areaSlot" id="sofaAreaSlot2Div"></div>
+          <div class="areaSlot" id="sofaAreaSlot3Div"></div>
+          <div class="areaSlot" id="sofaAreaSlot4Div"></div>
         </div>
-        <div class="area big">
-          Computer
+        <div class="area" id="computerAreaDiv">
+          <div class="areaTitle">Computer</div>
+          <div class="areaSlot" id="computerAreaSlot1Div"></div>
+          <div class="areaSlot" id="computerAreaSlot2Div"></div>
+          <div class="areaSlot" id="computerAreaSlot3Div"></div>
         </div>
-        <div class="area">
-          Whiteboard
+        <div class="area" id="whiteboardAreaDiv">
+          <div class="areaTitle">Whiteboard</div>
+          <div class="areaSlot" id="whiteboardAreaSlot1Div"></div>
+          <div class="areaSlot" id="whiteboardAreaSlot2Div"></div>
         </div>
-        <div class="area">
-          Conference room
+        <div class="area" id="conferenceAreaDiv">
+          <div class="areaTitle">Conference room</div>
+          <div class="areaSlot" id="conferenceAreaSlot1Div"></div>
+          <div class="areaSlot" id="conferenceAreaSlot2Div"></div>
+          <div class="areaSlot" id="conferenceAreaSlot3Div"></div>
+          <div class="areaSlot" id="conferenceAreaSlot4Div"></div>
         </div>
-        <div class="area">
-          Test Area
+        <div class="area" id="testAreaDiv">
+          <div class="areaTitle">Test Area</div>
+          <div class="areaSlot" id="testAreaSlot1Div"></div>
         </div>
-        <div class="area">
-          Smoking Area
+        <div class="area" id="smokingAreaDiv">
+          <div class="areaTitle">Smoking Area</div>
+          <div class="areaSlot" id="smokingAreaSlot1Div"></div>
+          <div class="areaSlot" id="smokingAreaSlot2Div"></div>
+          <div class="areaSlot" id="smokingAreaSlot3Div"></div>
+          <div class="areaSlot" id="smokingAreaSlot4Div"></div>
         </div>
-        <div class="area">
-          Pub
+        <div class="area" id="pubAreaDiv">
+          <div class="areaTitle">Pub</div>
+          <div class="areaSlot" id="pubAreaSlot1Div"></div>
+          <div class="areaSlot" id="pubAreaSlot2Div"></div>
+          <div class="areaSlot" id="pubAreaSlot3Div"></div>
+          <div class="areaSlot" id="pubAreaSlot4Div"></div>
         </div>
-        <div class="area">
-          Shop
+        <div class="area" id="shopAreaDiv">
+          <div class="areaTitle">Shop</div>
+          <div class="areaSlot" id="shopAreaSlot1Div"></div>
+          <div class="areaSlot" id="shopAreaSlot2Div"></div>
         </div>
       </div>
     </div>
@@ -84,7 +109,7 @@
     <hr>
     <footer>
       <div class="row">
-        
+
         <div class="col-lg-12">
           <p><a href="https://github.com/dooglz/SEC15">SEC Simulator 2015</a> - Still Compiling</p>
           <div id="libCredits">
