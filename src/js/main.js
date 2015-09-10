@@ -66,14 +66,14 @@ var ProgrammingLanguages = [
 ];
 
 var Areas = [
-  { name: "Sofa", safeName: "sofa", description: "Chillout", slots: 4, travelTime: 2, stress: -.05, energy: 0.1, drunk: 0, bugs: 0, codeSize: 0, coolness: 0 },
+  { name: "Sofa", safeName: "sofa", description: "Chillout", slots: 4, travelTime: 2, stress: -.05, energy: 0.1, drunk: -0.7, bugs: 0, codeSize: 0, coolness: 0 },
   { name: "Computer", safeName: "computer", description: "Code", slots: 3, travelTime: 1, stress: 0.03, energy: -0.015, drunk: 0, bugs: 0.1, codeSize: 1.5, coolness: 0.01 },
   { name: "Whiteboard", safeName: "whiteboard", description: "Plan", slots: 3, travelTime: 1, stress: 0.01, energy: -0.05, drunk: 0, bugs: 0, codeSize: 0.1, coolness: 0.5 },
-  { name: "Conference room", safeName: "conference", description: "Practise Presentation", slots: 2, travelTime: 2, stress: 2.0, energy: -1.0, drunk: 0, bugs: 0, codeSize: 0, coolness: 0.1 },
-  { name: "Test Area", safeName: "test", description: "QA", slots: 2, travelTime: 1, stress: 1.0, energy: -1.0, drunk: 0, bugs: -0.1, codeSize: 0, coolness: 0.1 },
-  { name: "Smoking Area", safeName: "smoking", description: "420 blazeit", slots: 2, travelTime: 3, stress: -5.0, energy: 0, drunk: 0.5, bugs: 0, codeSize: 0, coolness: 0.25 },
-  { name: "Pub", safeName: "pub", description: "Forget Troubles", slots: 2, travelTime: 10, stress: -2.0, energy: 0, drunk: 3.0, bugs: 0, codeSize: 0, coolness: 0.1 },
-  { name: "Shop", safeName: "shop", description: "Get Food", slots: 1, travelTime: 5, stress: -0.5, energy: 0.1, drunk: 0.1, bugs: 0, codeSize: 0, coolness: 0 },
+  { name: "Conference room", safeName: "conference", description: "Practise Presentation", slots: 2, travelTime: 2, stress: 0.002, energy: -0.01, drunk: 0, bugs: 0, codeSize: 0, coolness: 0.1 },
+  { name: "Test Area", safeName: "test", description: "QA", slots: 2, travelTime: 1, stress: 0.1, energy: -0.01, drunk: 0, bugs: -0.1, codeSize: 0, coolness: 0.1 },
+  { name: "Smoking Area", safeName: "smoking", description: "420 blazeit", slots: 2, travelTime: 3, stress: -0.5, energy: 0, drunk: 0.1, bugs: 0, codeSize: 0, coolness: 0.0 },
+  { name: "Pub", safeName: "pub", description: "Forget Troubles", slots: 2, travelTime: 10, stress: -0.2, energy: 0, drunk: 0.3, bugs: 0, codeSize: 0, coolness: 0.1 },
+  { name: "Shop", safeName: "shop", description: "Get Food", slots: 1, travelTime: 5, stress: -0.5, energy: 0.15, drunk: 0.0, bugs: 0, codeSize: 0, coolness: 0 },
 ];
 
 //modifiers, applied whenever a is calulated
